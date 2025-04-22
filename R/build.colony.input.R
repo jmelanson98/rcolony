@@ -1274,7 +1274,12 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
       vals = row[is.na(row)]
       paste(vals, collapse = delim)
       })
-    writeLines(c(lines,""), name, append = TRUE)
+    con <- file(name, open = "a")  # 'a' = append mode
+    writeLines(c(lines, ""), con)
+    close(con)
+  
+
+    
   }else{
     #If there are no excluded sibships
     utils::write.table(paste(colonyfile$n.excluded.paternal.sibships, " !Number of offspring with known excluded paternal sibships"), name, append = TRUE, quote = FALSE, row.names = FALSE, col.names = FALSE)
