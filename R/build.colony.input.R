@@ -1285,7 +1285,7 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
     for (i in 1:dim(colonyfile$excluded.paternal.sibships)[1]){
       csum[i] = length(colonyfile$excluded.paternal.sibships[i, ][!is.na(colonyfile$excluded.paternal.sibships[i, ])])
       }
-    csum = csum - 1
+    csum = csum - 2
 
     colonyfile$excluded.paternal.sibships = cbind(colonyfile$excluded.paternal.sibships[, 1], csum, colonyfile$excluded.paternal.sibships[, 2:ncol(colonyfile$excluded.paternal.sibships)])
 
@@ -1364,7 +1364,7 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
     for (i in 1:dim(colonyfile$excluded.maternal.sibships)[1]){
       csum[i] = length(colonyfile$excluded.maternal.sibships[i, ][!is.na(colonyfile$excluded.maternal.sibships[i, ])])
       }
-    csum = csum - 1
+    csum = csum - 2
 
     colonyfile$excluded.maternal.sibships = cbind(colonyfile$excluded.maternal.sibships[, 1], csum, colonyfile$excluded.maternal.sibships[, 2:ncol(colonyfile$excluded.maternal.sibships)])
 
