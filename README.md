@@ -1,7 +1,9 @@
 # rcolony
 The RColony package provides simple tools for the implementation of the Colony pedigree analysis software.
 
-This version of the package was updated on April 22, 2025 to integrate with the most recent version of COLONY2 (download from https://www.zsl.org/about-zsl/resources/software/colony).
+# small updates!
+Forked from jonesor/rcolony (thank you thank you thank you for a great wrapper package!)
+Here I have made some small updates (April 22, 2025) to integrate outputs with the most recent version of COLONY2 (download from https://www.zsl.org/about-zsl/resources/software/colony).
 
 Modifications were made to the function build.colony.input to create a properly formatted .DAT file for a command line (non-GUI) serial run on MacOS Sonoma 14.0. These modifications included:
 
