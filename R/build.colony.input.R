@@ -1280,7 +1280,7 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
       }
     }
 
-    colonyfile$excluded.paternal.sibships[, 1 + dim(colonyfile$excluded.paternal.sibships)[2]] = c(rep("", dim(colonyfile$excluded.paternal.sibships)[1] - 1))
+    colonyfile$excluded.paternal.sibships[, 1 + dim(colonyfile$excluded.paternal.sibships)[2]] = c(rep("", dim(colonyfile$excluded.paternal.sibships)[1]))
     csum = NULL
     for (i in 1:dim(colonyfile$excluded.paternal.sibships)[1]){
       csum[i] = length(colonyfile$excluded.paternal.sibships[i, ][!is.na(colonyfile$excluded.paternal.sibships[i, ])])
@@ -1359,7 +1359,7 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
       }
     }
 
-    colonyfile$excluded.maternal.sibships[, 1 + dim(colonyfile$excluded.maternal.sibships)[2]] = c(rep("", dim(colonyfile$excluded.maternal.sibships)[1] - 1))
+    colonyfile$excluded.maternal.sibships[, 1 + dim(colonyfile$excluded.maternal.sibships)[2]] = c(rep("", dim(colonyfile$excluded.maternal.sibships)[1]))
     csum = NULL
     for (i in 1:dim(colonyfile$excluded.maternal.sibships)[1]){
       csum[i] = length(colonyfile$excluded.maternal.sibships[i, ][!is.na(colonyfile$excluded.maternal.sibships[i, ])])
