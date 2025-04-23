@@ -11,7 +11,7 @@ Modifications were made to the function build.colony.input to create a properly 
 - Addition of input queries for:
     - line 8 (after dioecious/monoecious): 0/1 for inbreeding
     - line 11 (after mating systems): 0/1 for clone/duplicate inference
-    - line 12 (after clone inference): 0/1 for sibship size scaling**
+    - line 12 (after clone inference): 0/1 for sibship size scaling
 - Modification of known paternity/maternity subsection to write an exclusion threshold even when the number of known parentages is 0 (necessary for COLONY interpretation)
 
 
