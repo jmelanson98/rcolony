@@ -480,13 +480,23 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
   write(paste(colonyfile$updateallelefreq, "! B, 0/1=Not updating/updating allele frequency"), name, append = TRUE)
 
 
-  #######################################################
+   #######################################################
   #  ! 2/1=Dioecious/Monoecious
   #######################################################
   cat("What kind of species is it?\nSee help for definitions.\n\n")
   switch(utils::menu(c("Dioecious species", "Monoecious species")) + 1,
          cat("Nothing done\n\n\n"), colonyfile$diomonoecy <- 2, colonyfile$diomonoecy <- 1)
   write(paste(colonyfile$diomonoecy, "! 2/1=Dioecious/Monoecious"), name, append = TRUE)
+
+
+  #######################################################
+  #  ! 0/1=No inbreeding/inbreeding
+  #######################################################
+  cat("Is there inbreeding?\n\n")
+  switch(utils::menu(c("No inbreeding", "Inbreeding")) + 1,
+         cat("Nothing done\n\n\n"), colonyfile$inbreeding <- 0, colonyfile$inbreeding <- 1)
+  write(paste(colonyfile$cloneinference, "! 0/1=No inbreeding/inbreeding"), name, append = TRUE)
+
 
   #######################################################
   #  ! B, 0/1=Diploid species/HaploDiploid species
@@ -508,6 +518,22 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
          cat("Nothing done\n\n\n"), colonyfile$femalepolygamy <- 1, colonyfile$femalepolygamy <- 0)
   write(paste(colonyfile$malepolygamy, colonyfile$femalepolygamy, "! B, 0/1=Polygamy/Monogamy for males & females"), name, append = TRUE)
 
+   #######################################################
+  #  ! 0/1=No clone inference/clone inference
+  #######################################################
+  cat("Perform clone inference?\n\n")
+  switch(utils::menu(c("No clone inference", "Clone inference")) + 1,
+         cat("Nothing done\n\n\n"), colonyfile$cloneinference <- 2, colonyfile$cloneinference <- 1)
+  write(paste(colonyfile$cloneinference, "! 0/1=No clone inference/clone inference"), name, append = TRUE)
+
+  #######################################################
+  #  ! 0/1=No scaling/sibship size scaling
+  #######################################################
+  cat("Perform sibship size scaling?\n\n")
+  switch(utils::menu(c("No sibship size scaling", "Sibship size scaling")) + 1,
+         cat("Nothing done\n\n\n"), colonyfile$sibscaling <- 0, colonyfile$sibscaling <- 1)
+  write(paste(colonyfile$sibscaling, "! 0/1=No scaling/sibship size scaling"), name, append = TRUE)
+  
   #######################################################
   #  ! B, R, R : Use sibship prior, Y/N=1/0. If Yes, give mean paternal, maternal sibship size
   #######################################################
@@ -989,7 +1015,7 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
 
   #Paternal Dyads
   if(is.na(colonyfile$paternal.dyads)){
-    utils::write.table("0 !Number of known paternities", name, append = TRUE, quote = FALSE, row.names = FALSE, col.names = FALSE)
+    utils::write.table("0 0 !Number of known paternities", name, append = TRUE, quote = FALSE, row.names = FALSE, col.names = FALSE)
     write("", name, append = TRUE)
     }else{
       utils::write.table(paste(dim(colonyfile$paternal.dyads)[1], "!Number of known paternities"), name, append = TRUE, quote = FALSE, row.names = FALSE, col.names = FALSE)
@@ -1001,7 +1027,7 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
 
   #Maternal Dyads
   if(is.na(colonyfile$maternal.dyads)){
-    utils::write.table("0 !Number of known maternities", name, append = TRUE, quote = FALSE, row.names = FALSE, col.names = FALSE)
+    utils::write.table("0 0 !Number of known maternities", name, append = TRUE, quote = FALSE, row.names = FALSE, col.names = FALSE)
     write("", name, append = TRUE)
     }else{
       utils::write.table(paste(dim(colonyfile$maternal.dyads)[1], "!Number of known maternities"), name, append = TRUE, quote = FALSE, row.names = FALSE, col.names = FALSE)
