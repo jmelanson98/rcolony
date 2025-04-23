@@ -495,7 +495,7 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
   cat("Is there inbreeding?\n\n")
   switch(utils::menu(c("No inbreeding", "Inbreeding")) + 1,
          cat("Nothing done\n\n\n"), colonyfile$inbreeding <- 0, colonyfile$inbreeding <- 1)
-  write(paste(colonyfile$cloneinference, "! 0/1=No inbreeding/inbreeding"), name, append = TRUE)
+  write(paste(colonyfile$inbreeding, "! 0/1=No inbreeding/inbreeding"), name, append = TRUE)
 
 
   #######################################################
