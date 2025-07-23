@@ -523,7 +523,7 @@ build.colony.input <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
   #######################################################
   cat("Perform clone inference?\n\n")
   switch(utils::menu(c("No clone inference", "Clone inference")) + 1,
-         cat("Nothing done\n\n\n"), colonyfile$cloneinference <- 2, colonyfile$cloneinference <- 1)
+         cat("Nothing done\n\n\n"), colonyfile$cloneinference <- 0, colonyfile$cloneinference <- 1)
   write(paste(colonyfile$cloneinference, "! 0/1=No clone inference/clone inference"), name, append = TRUE)
 
   #######################################################
