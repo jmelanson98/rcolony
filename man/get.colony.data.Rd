@@ -4,8 +4,11 @@
 \alias{get.colony.data}
 \title{This function creates a data object from the Colony2 outputs.}
 \usage{
-get.colony.data(datadir, filename = list.files(datadir, pattern = ".DAT",
-  ignore.case = TRUE), colonyVersion = "2.0")
+get.colony.data(
+  datadir,
+  filename = list.files(datadir, pattern = ".DAT", ignore.case = TRUE),
+  colonyVersion = "2.0"
+)
 }
 \arguments{
 \item{datadir}{The path to the directory that contains the Colony output
