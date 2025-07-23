@@ -1,4 +1,6 @@
-  colonyfile = NULL
+build.colony.automatic <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
+
+colonyfile = NULL
 
   #Functions used here
   is.whole <- function(a) {floor(a) == a}
