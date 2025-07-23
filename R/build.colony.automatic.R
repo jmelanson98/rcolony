@@ -158,7 +158,7 @@
         warning("The number of runs must be a whole number!\n", immediate. = TRUE)
       }
     }
-  }
+  
 
   #######################################################
   #  ! I, Length of Run (1, 2, 3) = (Short, Medium, Long)
@@ -272,7 +272,7 @@
       cat("Probabilities must be less than or equal to 1.\n")
       colonyfile = colonyfile[which(names(colonyfile) != "fatherprob")]
     }
-  }
+  
 
   #######################################################
   #FATHERS - number of candidate fathers
