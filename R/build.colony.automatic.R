@@ -1,3 +1,24 @@
+#' This function builds an automatic .DAT file with parameters that I (Jenna) am
+#' using to test some simulated data. It should NOT be used to build .DAT files
+#' for other projects, as it will NOT prompt for all of the options.
+#' This is purely for my convenience and to speed up testing!
+#'
+#'
+#' @param wd The directory where the generated file will be placed. The default
+#' is the current working directory.
+#' @param name The desired filename for the Colony input file (the default is
+#' Colony2.DAT).
+#' @param delim What is the delimiter for the input files (default is that they
+#' are whitespace delimited).
+#' @return A text file is produced. This file can be used by Colony2 as an
+#' input file.
+#' @author Owen R. Jones
+#' @seealso \code{\link{run.colony}}
+#' @references Wang, J. (2004) Sibship reconstruction from genetic data with
+#' typing errors.  Genetics 166: 1963-1979.
+#' @keywords manip
+#' @export
+
 build.colony.automatic <- function(wd=getwd(), name = "Colony2.DAT", delim = ""){
 
 colonyfile = NULL
