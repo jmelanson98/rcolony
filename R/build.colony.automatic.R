@@ -141,22 +141,16 @@ colonyfile = NULL
   #######################################################
   #  ! B, R, R : Use sibship prior, Y/N=1/0. If Yes, give mean paternal, maternal sibship size
   #######################################################
-  colonyfile$sibship.prior <- 0
+  colonyfile$sibship.prior <- 1
 
   if(colonyfile$sibship.prior==0){
     colonyfile$sibship.prior.paternal = 0
     colonyfile$sibship.prior.maternal = 0
     write(paste(colonyfile$sibship.prior, colonyfile$sibship.prior.paternal, colonyfile$sibship.prior.maternal, "! B, R, R : Use sibship prior, Y/N=1/0. If Yes, give mean paternal, maternal sibship size"), name, append = TRUE)
     }else{
-      while(length(colonyfile$sibship.prior.paternal) == 0){
-        cat("Enter the paternal sibship size (number of sibships).\n\n\n")
-        colonyfile$sibship.prior.paternal = as.numeric(scan(n = 1, what = "integer"))
-      }
-
-    while(length(colonyfile$sibship.prior.maternal) == 0){
-      cat("Enter the maternal sibship size (number of sibships).\n\n\n")
-      colonyfile$sibship.prior.maternal = as.numeric(scan(n = 1, what = "integer"))
-    }
+      colonyfile$sibship.prior.paternal = as.numeric(1)
+      colonyfile$sibship.prior.maternal = as.numeric(1.)
+    
       write(paste(colonyfile$sibship.prior, colonyfile$sibship.prior.paternal, colonyfile$sibship.prior.maternal, "! B, R, R : Use sibship prior, Y/N=1/0. If Yes, give mean paternal, maternal sibship size"), name, append = TRUE)
     }
 
