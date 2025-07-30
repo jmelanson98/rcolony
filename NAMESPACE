@@ -2,6 +2,7 @@
 
 export(build.colony.automatic)
 export(build.colony.input)
+export(build.colony.superauto)
 export(categoricalxy)
 export(get.colony.data)
 export(get.interm.data)
