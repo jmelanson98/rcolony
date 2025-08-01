@@ -15,7 +15,8 @@ build.colony.superauto(
   sample_size,
   num_loci,
   error_rates_path,
-  genotypes_path
+  genotypes_path,
+  exclusion_path
 )
 }
 \arguments{

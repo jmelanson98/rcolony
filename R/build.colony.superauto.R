@@ -26,7 +26,8 @@ build.colony.superauto <- function(wd=getwd(),
                                    sample_size,
                                    num_loci,
                                    error_rates_path,
-                                   genotypes_path
+                                   genotypes_path,
+                                   exclusion_path
                                    ){
   
   colonyfile = NULL
@@ -569,36 +570,17 @@ build.colony.superauto <- function(wd=getwd(),
   #######################################################
   #Define EXCLUDED PATERNAL sibships
   #######################################################
-  colonyfile$n.excluded.paternal.sibships = as.numeric(0)
-    
-    if(length(colonyfile$n.excluded.paternal.sibships) != 0){
-      #Whole number warning
-      if(is.whole(colonyfile$n.excluded.paternal.sibships) == FALSE){
-        utils::flush.console()
-        colonyfile = colonyfile[which(names(colonyfile) != "n.excluded.paternal.sibships")]
-        warning("The number of excluded paternal sibships must be a whole number!\n", immediate. = TRUE)
-      }
-    }
   
+  colonyfile$excluded.paternal.sibships.PATH = exclusion_path
   
-  if(colonyfile$n.excluded.paternal.sibships > 0){
+  if(!is.null(colonyfile$excluded.paternal.sibships.PATH)){
     
-    #Get the path, and delimiter, to the file...
-    while(length(colonyfile$excluded.paternal.sibships.PATH) == 0){
-      cat("Provide the path to the excluded PATERNAL sibships file.\n\n\n")
-      utils::flush.console()
-      colonyfile$excluded.paternal.sibships.PATH = file.choose()
       
       #Read in the data...
       colonyfile$excluded.paternal.sibships = utils::read.table(colonyfile$excluded.paternal.sibships.PATH, header = FALSE,
                                                                 sep=delim, colClasses=c("character"), fill = TRUE, flush = TRUE, na.strings="")
       
-      #Check the data
-      if(colonyfile$n.excluded.paternal.sibships != dim(colonyfile$excluded.paternal.sibships)[1]){
-        colonyfile = colonyfile[which(names(colonyfile) != "excluded.paternal.sibships.PATH")]
-        utils::flush.console()
-        warning(paste("The number of defined excluded paternal sibships ", "(", colonyfile$n.excluded.paternal.sibships, ") does not equal the number provided in the file selected (", dim(colonyfile$excluded.paternal.sibships)[1], ").\n\n", sep=""), immediate. = TRUE)
-      }
+      colonyfile$n.excluded.paternal.sibships = dim(colonyfile$excluded.paternal.sibships)[1]
       
       #Further checks - do excluded sibs appear in offspring file
       os = stats::na.omit(as.vector(as.matrix(colonyfile$excluded.paternal.sibships[, 2:dim(colonyfile$excluded.paternal.sibships)[2]])))
@@ -608,7 +590,7 @@ build.colony.superauto <- function(wd=getwd(),
         utils::flush.console()
         warning(paste("Offspring in excluded paternal sibships file are not present in the offspring genotype data:", paste(os[which(os%in%colonyfile$Offspring[, 1] == FALSE)], collapse=", ")), immediate. = TRUE)
       }
-    }
+    
     
     colonyfile$excluded.paternal.sibships[, 1 + dim(colonyfile$excluded.paternal.sibships)[2]] = c(rep("", dim(colonyfile$excluded.paternal.sibships)[1]))
     csum = NULL
@@ -645,37 +627,19 @@ build.colony.superauto <- function(wd=getwd(),
   
   #######################################################
   #Define EXCLUDED MATERNAL sibships
-  #######################################################
-  colonyfile$n.excluded.maternal.sibships = as.numeric(0)
-    
-    if(length(colonyfile$n.excluded.maternal.sibships) != 0){
-      #Whole number warning
-      if(is.whole(colonyfile$n.excluded.maternal.sibships) == FALSE){
-        utils::flush.console()
-        colonyfile = colonyfile[which(names(colonyfile) != "n.excluded.maternal.sibships")]
-        warning("The number of excluded maternal sibships must be a whole number!\n", immediate. = TRUE)
-      }
-    }
+  ######################################################
   
+  colonyfile$excluded.maternal.sibships.PATH = exclusion_path
   
-  if(colonyfile$n.excluded.maternal.sibships > 0){
+  if(!is.null(colonyfile$excluded.maternal.sibships.PATH)){
     
     #Get the path, and delimiter, to the file...
-    while(length(colonyfile$excluded.maternal.sibships.PATH) == 0){
-      cat("Provide the path to the excluded MATERNAL sibships file.\n\n\n")
-      utils::flush.console()
-      colonyfile$excluded.maternal.sibships.PATH = file.choose()
-      
+    
       #Read in the data...
       colonyfile$excluded.maternal.sibships = utils::read.table(colonyfile$excluded.maternal.sibships.PATH, header = FALSE,
                                                                 sep=delim, colClasses = c("character"), fill = TRUE, flush = TRUE, na.strings="")
+      colonyfile$n.excluded.maternal.sibships = dim(colonyfile$excluded.maternal.sibships)[1]
       
-      #Check the data
-      if(colonyfile$n.excluded.maternal.sibships != dim(colonyfile$excluded.maternal.sibships)[1]){
-        colonyfile = colonyfile[which(names(colonyfile) != "excluded.maternal.sibships.PATH")]
-        utils::flush.console()
-        warning(paste("The number of defined excluded maternal sibships ", "(", colonyfile$n.excluded.maternal.sibships, ") does not equal the number provided in the file selected (", dim(colonyfile$excluded.maternal.sibships)[1], ").\n\n", sep=""), immediate. = TRUE)
-      }
       
       #Further checks - do excluded sibs appear in offspring file
       os = stats::na.omit(as.vector(as.matrix(colonyfile$excluded.maternal.sibships[, 2:dim(colonyfile$excluded.maternal.sibships)[2]])))
@@ -685,7 +649,7 @@ build.colony.superauto <- function(wd=getwd(),
         utils::flush.console()
         warning(paste("Offspring in excluded maternal sibships file are not present in the offspring genotype data:", paste(os[which(os%in%colonyfile$Offspring[, 1] ==  FALSE)], collapse=", ")), immediate. = TRUE)
       }
-    }
+    
     
     colonyfile$excluded.maternal.sibships[, 1 + dim(colonyfile$excluded.maternal.sibships)[2]] = c(rep("", dim(colonyfile$excluded.maternal.sibships)[1]))
     csum = NULL
