@@ -620,6 +620,7 @@ build.colony.superauto <- function(wd=getwd(),
     
   }else{
     #If there are no excluded sibships
+    colonyfile$n.excluded.maternal.sibships = as.numeric(0)
     utils::write.table(paste(colonyfile$n.excluded.paternal.sibships, " !Number of offspring with known excluded paternal sibships"), name, append = TRUE, quote = FALSE, row.names = FALSE, col.names = FALSE)
     write("", name, append = TRUE)
   }
@@ -672,6 +673,7 @@ build.colony.superauto <- function(wd=getwd(),
     close(con)
   }else{
     #If there are no excluded sibships
+    colonyfile$n.excluded.maternal.sibships = as.numeric(0)
     utils::write.table(paste(colonyfile$n.excluded.maternal.sibships, " !Number of offspring with known excluded maternal sibships"), name, append = TRUE, quote = FALSE, row.names = FALSE, col.names = FALSE)
     write("", name, append = TRUE)
   }
